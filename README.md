@@ -17,11 +17,13 @@ student columns:    user_id,   user_name, course_id, state
 
 Here’s an example: 
 
+```
 course_id, course_name, state
 2, "Operating Systems", active
 
 user_id, user_name, course_id, state
 4, "Jon Doe", 2, active
+```
 
 Write a program that will process a CSV file of courses as well as a CSV file of students. Feel free to use aCSV parsing library. Remember, you are free to use whatever technology stack you'd like, but please pick something you know; this isn't a good time to experiment with new technology! :) Also, your project does not need to be a web application, but feel free to make one.
 
