@@ -26,10 +26,10 @@ public class FileUploadBeanTest {
     private static final Long MOCK_FILE_SIZE = 5000l;
     private static UploadedFile mockFile = Mockito.mock(UploadedFile.class);
     private FileUploadBean instance;
-    String studentHeader = "course_id, course_name, state";
-    private byte[] studentHeaderBytes = (studentHeader).getBytes();
-    String courseHeader = "user_id, user_name, course_id, state";
-    private byte[] courseHeaderBytes = (courseHeader).getBytes();
+    String studentHeader = "user_id, user_name, course_id, state";
+    String courseHeader = "course_id, course_name, state";
+    private final byte[] studentHeaderBytes = (studentHeader).getBytes();
+    private final byte[] courseHeaderBytes = (courseHeader).getBytes();
     
     public FileUploadBeanTest() {
     }
@@ -61,7 +61,6 @@ public class FileUploadBeanTest {
     @Test
     public void testGetFile() {
         System.out.println("getFile");
-        FileUploadBean instance = new FileUploadBean();
         UploadedFile expResult = null;
         UploadedFile result = instance.getFile();
         assertEquals(expResult, result);
@@ -75,7 +74,6 @@ public class FileUploadBeanTest {
     public void testSetFile() {
         System.out.println("setFile");
         UploadedFile file = null;
-        FileUploadBean instance = new FileUploadBean();
         instance.setFile(file);
 
     }
@@ -102,6 +100,7 @@ public class FileUploadBeanTest {
     public void testIsFileStudent() {
         System.out.println("isFileStudent");
         when(mockFile.getContents()).thenReturn(studentHeaderBytes);
+        instance.setFile(mockFile);
         boolean expResult = true;
         boolean result = instance.isFileStudent(); 
         assertEquals(expResult, result);
@@ -117,6 +116,7 @@ public class FileUploadBeanTest {
     public void testIsFileStudentCourse() {
         System.out.println("isFileStudent");
         when(mockFile.getContents()).thenReturn(courseHeaderBytes);
+        instance.setFile(mockFile);
         boolean expResult = false;
         boolean result = instance.isFileStudent(); 
         assertEquals(expResult, result);
@@ -134,6 +134,7 @@ public class FileUploadBeanTest {
         System.out.println("isFileStudent");
         byte[] emptyByteArray = null;
         when(mockFile.getContents()).thenReturn(emptyByteArray);
+        instance.setFile(mockFile);
         boolean expResult = false;
         boolean result = instance.isFileStudent(); 
         assertEquals(expResult, result);
@@ -157,7 +158,6 @@ public class FileUploadBeanTest {
     @Test
     public void testProcessCourses() {
         System.out.println("processCourses");
-        FileUploadBean instance = new FileUploadBean();
         instance.processCourses();
 
     }
