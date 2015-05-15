@@ -4,6 +4,11 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <!-- Turn off the Primefaces theming -->
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>none</param-value>  
+    </context-param> 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -13,6 +18,12 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <!-- File upload context -->
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>auto</param-value>
+    </context-param>
+    <!-- End file upload context -->
     <session-config>
         <session-timeout>
             30
