@@ -16,11 +16,11 @@ import org.csveed.annotations.CsvFile;
 @CsvFile(comment = '%', quote = '\'', escape = '\\', separator = ',')
 public class Student implements Serializable {
 
-    @CsvCell(columnIndex = 0, required = true)
+    @CsvCell(columnIndex = 1, required = true)
     private Integer userId;
-    @CsvCell(columnIndex = 1)
-    private String userName;
     @CsvCell(columnIndex = 2)
+    private String userName;
+    @CsvCell(columnIndex = 3)
     private Integer courseId;
     @CsvCell(columnIndex = 4)
     private String active;
