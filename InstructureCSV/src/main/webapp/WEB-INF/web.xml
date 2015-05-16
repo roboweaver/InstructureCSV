@@ -4,11 +4,6 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    <!-- Turn off the Primefaces theming -->
-    <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>none</param-value>  
-    </context-param> 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -24,6 +19,12 @@
         <param-value>auto</param-value>
     </context-param>
     <!-- End file upload context -->
+    <!-- Set the theme to bootstrap -->
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
+    </context-param>
+    <!-- End set theme -->
     <session-config>
         <session-timeout>
             30
