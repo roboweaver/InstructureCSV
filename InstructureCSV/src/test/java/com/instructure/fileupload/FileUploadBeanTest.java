@@ -164,10 +164,10 @@ public class FileUploadBeanTest {
     public void testProcessStudents() {
         System.out.println("processStudents");
         Student student = new Student();
-        student.setUserId(1);
-        student.setUserName("Test User");
-        student.setActive("active");
-        student.setCourseId(1);
+        student.setStudentId(1);
+        student.setStudentName("Test User");
+        student.setStudentActive("active");
+        student.setStudentCourseId(1);
         // Set up the mocks ...
 
         when(mockFile.getContents()).thenReturn(studentBytes);
@@ -177,10 +177,10 @@ public class FileUploadBeanTest {
 
         assertEquals(returnedList.size(), 1);
         for (Student ret : returnedList) {
-            assertEquals(ret.getUserId(), student.getUserId());
-            assertEquals(ret.getUserName(), student.getUserName());
-            assertEquals(ret.getCourseId(), student.getCourseId());
-            assertEquals(ret.getActive(), student.getActive());
+            assertEquals(ret.getStudentId(), student.getStudentId());
+            assertEquals(ret.getStudentName(), student.getStudentName());
+            assertEquals(ret.getStudentCourseId(), student.getStudentCourseId());
+            assertEquals(ret.getStudentActive(), student.getStudentActive());
         }
 
     }
@@ -193,7 +193,7 @@ public class FileUploadBeanTest {
         System.out.println("processCourses");
         Course course = new Course();
         course.setCourseName("Test course");
-        course.setActive("active");
+        course.setCourseActive("active");
         course.setCourseId(1);
 
         // Set up the mocks ...       
@@ -206,7 +206,7 @@ public class FileUploadBeanTest {
         for (Course ret : returnedList) {
             assertEquals(ret.getCourseId(), course.getCourseId());
             assertEquals(ret.getCourseName(), course.getCourseName());
-            assertEquals(ret.getActive(), course.getActive());
+            assertEquals(ret.getCourseActive(), course.getCourseActive());
         }
 
     }

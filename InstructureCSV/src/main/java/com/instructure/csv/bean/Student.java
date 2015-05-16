@@ -29,88 +29,90 @@ import org.csveed.annotations.CsvFile;
     @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "Student.findByStudentId", query = "SELECT s FROM Student s WHERE s.studentId = :studentId"),
     @NamedQuery(name = "Student.findByStudentActive", query = "SELECT s FROM Student s WHERE s.studentActive = :studentActive"),
-    @NamedQuery(name = "Student.findByStudentName", query = "SELECT s FROM Student s WHERE s.studentName = :studentName")})
+    @NamedQuery(name = "Student.findByStudentName", query = "SELECT s FROM Student s WHERE s.studentName = :studentName"),
+    @NamedQuery(name = "Student.findByCourseId", query = "Select s FROM Student s WHERE s.studentCourseId = :studentCourseId")})
 public class Student implements Serializable {
 
     @CsvCell(columnIndex = 1, required = true)
     @Id
     @GeneratedValue
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @Column(name = "student_id", nullable = false)
+    private Integer studentId;
     
     @CsvCell(columnIndex = 2)
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "user_name", nullable = false, length = 255)
-    private String userName;
+    @Column(name = "student_name", nullable = false, length = 255)
+    private String studentName;
     
     
     @CsvCell(columnIndex = 3)
-    @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
-    @ManyToOne(optional = false)    
-    private Integer courseId;
+    @Basic(optional = false)
+    @Column(name = "student_course_id", nullable = false)  
+    // TODO: add join relationship here and replace the member with Course object
+    private Integer studentCourseId;
     
     @CsvCell(columnIndex = 4)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "course_active", nullable = false)
-    private String active;
+    @Column(name = "student_active", nullable = false)
+    private String studentActive;
 
     /**
-     * @return the userId
+     * @return the studentId
      */
-    public Integer getUserId() {
-        return userId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
     /**
-     * @param userId the userId to set
+     * @param studentId the studentId to set
      */
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     /**
-     * @return the userName
+     * @return the studentName
      */
-    public String getUserName() {
-        return userName;
+    public String getStudentName() {
+        return studentName;
     }
 
     /**
-     * @param userName the userName to set
+     * @param studentName the studentName to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     /**
-     * @return the courseId
+     * @return the studentCourseId
      */
-    public Integer getCourseId() {
-        return courseId;
+    public Integer getStudentCourseId() {
+        return studentCourseId;
     }
 
     /**
-     * @param courseId the courseId to set
+     * @param studentCourseId
      */
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setStudentCourseId(Integer studentCourseId) {
+        this.studentCourseId = studentCourseId;
     }
 
     /**
-     * @return the active
+     * @return the studentActive
      */
-    public String getActive() {
-        return active;
+    public String getStudentActive() {
+        return studentActive;
     }
 
     /**
-     * @param active the active to set
+     * @param active the studentActive to set
      */
-    public void setActive(String active) {
-        this.active = active;
+    public void setStudentActive(String active) {
+        this.studentActive = active;
     }
 
 }

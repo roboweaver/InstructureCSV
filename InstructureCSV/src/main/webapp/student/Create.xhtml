@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StudentCreateDlg" widgetVar="StudentCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateStudentTitle}">
+            <h:form id="StudentCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{studentController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateStudentLabel_studentId}" for="studentId" />
+                        <p:inputText id="studentId" value="#{studentController.selected.studentId}" title="#{bundle.CreateStudentTitle_studentId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentId}"/>
+                        <p:outputLabel value="#{bundle.CreateStudentLabel_studentName}" for="studentName" />
+                        <p:inputText id="studentName" value="#{studentController.selected.studentName}" title="#{bundle.CreateStudentTitle_studentName}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentName}"/>
+                        <p:outputLabel value="#{bundle.CreateStudentLabel_studentCourseId}" for="studentCourseId" />
+                        <p:inputText id="studentCourseId" value="#{studentController.selected.studentCourseId}" title="#{bundle.CreateStudentTitle_studentCourseId}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentCourseId}"/>
+                        <p:outputLabel value="#{bundle.CreateStudentLabel_studentActive}" for="studentActive" />
+                        <p:inputText id="studentActive" value="#{studentController.selected.studentActive}" title="#{bundle.CreateStudentTitle_studentActive}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_studentActive}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{studentController.create}" value="#{bundle.Save}" update="display,:StudentListForm:datalist,:growl" oncomplete="handleSubmit(args,'StudentCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="StudentCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

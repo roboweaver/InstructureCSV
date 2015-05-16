@@ -26,7 +26,7 @@ import org.csveed.annotations.CsvFile;
 @NamedQueries({
     @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
     @NamedQuery(name = "Course.findByCourseId", query = "SELECT c FROM Course c WHERE c.courseId = :courseId"),
-    @NamedQuery(name = "Course.findByStudentActive", query = "SELECT c FROM Course c WHERE c.studentActive = :studentActive"),
+    @NamedQuery(name = "Course.findByCourseActive", query = "SELECT c FROM Course c WHERE c.courseActive = :courseActive"),
     @NamedQuery(name = "Course.findByCourseName", query = "SELECT c FROM Course c WHERE c.courseName = :courseName")})
 public class Course implements Serializable {
 
@@ -46,8 +46,8 @@ public class Course implements Serializable {
     @CsvCell(columnIndex = 3)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "student_active", nullable = false)
-    private String active;
+    @Column(name = "course_active", nullable = false)
+    private String courseActive;
 
     /**
      * @return the courseId
@@ -78,17 +78,17 @@ public class Course implements Serializable {
     }
 
     /**
-     * @return the active
+     * @return the courseActive
      */
-    public String getActive() {
-        return active;
+    public String getCourseActive() {
+        return courseActive;
     }
 
     /**
-     * @param active the active to set
+     * @param courseActive the courseActive to set
      */
-    public void setActive(String active) {
-        this.active = active;
+    public void setCourseActive(String courseActive) {
+        this.courseActive = courseActive;
     }
 
 }
