@@ -90,5 +90,24 @@ public class Course implements Serializable {
     public void setCourseActive(String courseActive) {
         this.courseActive = courseActive;
     }
+    
+    /**
+     * Representation of the object as a string ...
+     * @return 
+     */
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Class: ");
+        sb.append(this.getClass().getName());
+        sb.append(": course_id: ");
+        sb.append(this.courseId);
+        sb.append(", user_name: '");
+        sb.append(this.courseName);
+        sb.append("), active: '");
+        sb.append(this.getCourseActive());
+        sb.append("'");
+        return sb.toString();
+    }
 
 }

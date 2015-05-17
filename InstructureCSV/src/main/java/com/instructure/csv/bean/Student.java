@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -115,4 +113,24 @@ public class Student implements Serializable {
         this.studentActive = active;
     }
 
+    /**
+     * Representation of the object ...
+     * @return 
+     */
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Class: ");
+        sb.append(this.getClass().getName());
+        sb.append(": user_id: ");
+        sb.append(this.studentId);
+        sb.append(", user_name: '");
+        sb.append(this.studentName);
+        sb.append("', course_id: (");
+        sb.append(this.studentCourseId);
+        sb.append("), active: '");
+        sb.append(this.getStudentActive());
+        sb.append("'");
+        return sb.toString();
+    }
 }
