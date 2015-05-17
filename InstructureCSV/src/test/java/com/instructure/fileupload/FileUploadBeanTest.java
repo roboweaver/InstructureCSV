@@ -2,6 +2,7 @@ package com.instructure.fileupload;
 
 import com.instructure.csv.bean.Course;
 import com.instructure.csv.bean.Student;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 import org.junit.After;
@@ -25,12 +26,12 @@ public class FileUploadBeanTest {
     private static final Long MOCK_FILE_SIZE = 5000l;
     private static UploadedFile mockFile = Mockito.mock(UploadedFile.class);
     private FileUploadBean instance;
-    String studentHeader = "user_id, user_name, course_id, state";
-    String studentBody = "1, Test User, 1, active";
-    String courseHeader = "course_id, course_name, state";
-    String courseBody = "1, Test course, active";
-    private final byte[] studentBytes = (studentHeader + "\n" + studentBody).getBytes();
-    private final byte[] courseBytes = (courseHeader + "\n" + courseBody).getBytes();
+    private final String studentHeader = "user_id, user_name, course_id, state";
+    private final String studentBody = "1, Test User, 1, active";
+    private final String courseHeader = "course_id, course_name, state";
+    private final String courseBody = "1, Test course, active";
+    private final String studentContent = (studentHeader + "\n" + studentBody);
+    private final String courseContent = (courseHeader + "\n" + courseBody);
 
     /**
      *
@@ -96,9 +97,11 @@ public class FileUploadBeanTest {
 
     /**
      * Test of fileUploadListener method, of class FileUploadBean.
+     *
+     * @throws java.io.IOException
      */
     @Test(expected = IOException.class)
-    public void testFileUploadListener() throws IOException {
+    public void testFileUploadListener() throws IOException, Exception {
         System.out.println("fileUploadListener");
 
         FileUploadEvent e = Mockito.mock(FileUploadEvent.class);
@@ -112,11 +115,13 @@ public class FileUploadBeanTest {
      * FileUploadBean.
      *
      * Should return true
+     *
+     * @throws java.io.IOException
      */
     @Test
-    public void testIsFileStudent() {
+    public void testIsFileStudent() throws IOException {
         System.out.println("isFileStudent");
-        when(mockFile.getContents()).thenReturn(studentBytes);
+        when(mockFile.getInputstream()).thenReturn(new ByteArrayInputStream(studentContent.getBytes()));
         instance.setFile(mockFile);
         boolean expResult = true;
         boolean result = instance.isFileStudent();
@@ -130,9 +135,9 @@ public class FileUploadBeanTest {
      * Should return false
      */
     @Test
-    public void testIsFileStudentCourse() {
+    public void testIsFileStudentCourse() throws IOException {
         System.out.println("isFileStudent");
-        when(mockFile.getContents()).thenReturn(courseBytes);
+        when(mockFile.getInputstream()).thenReturn(new ByteArrayInputStream(courseContent.getBytes()));
         instance.setFile(mockFile);
         boolean expResult = false;
         boolean result = instance.isFileStudent();
@@ -158,10 +163,10 @@ public class FileUploadBeanTest {
     }
 
     /**
-     * Test of processStudents method, of class FileUploadBean.
+     * Test of parseStudents method, of class FileUploadBean.
      */
     @Test
-    public void testProcessStudents() {
+    public void testProcessStudents() throws IOException {
         System.out.println("processStudents");
         Student student = new Student();
         student.setStudentId(1);
@@ -170,10 +175,10 @@ public class FileUploadBeanTest {
         student.setStudentCourseId(1);
         // Set up the mocks ...
 
-        when(mockFile.getContents()).thenReturn(studentBytes);
+        when(mockFile.getInputstream()).thenReturn(new ByteArrayInputStream(studentContent.getBytes()));
         instance.setFile(mockFile);
 
-        List<Student> returnedList = instance.processStudents();
+        List<Student> returnedList = instance.parseStudents();
 
         assertEquals(returnedList.size(), 1);
         for (Student ret : returnedList) {
@@ -186,10 +191,12 @@ public class FileUploadBeanTest {
     }
 
     /**
-     * Test of processCourses method, of class FileUploadBean.
+     * Test of parseCourses method, of class FileUploadBean.
+     *
+     * @throws java.io.IOException
      */
     @Test
-    public void testProcessCourses() {
+    public void testProcessCourses() throws IOException {
         System.out.println("processCourses");
         Course course = new Course();
         course.setCourseName("Test course");
@@ -197,10 +204,10 @@ public class FileUploadBeanTest {
         course.setCourseId(1);
 
         // Set up the mocks ...       
-        when(mockFile.getContents()).thenReturn(courseBytes);
+        when(mockFile.getInputstream()).thenReturn(new ByteArrayInputStream(courseContent.getBytes()));
         instance.setFile(mockFile);
 
-        List<Course> returnedList = instance.processCourses();
+        List<Course> returnedList = instance.parseCourses();
 
         assertEquals(returnedList.size(), 1);
         for (Course ret : returnedList) {
@@ -222,6 +229,10 @@ public class FileUploadBeanTest {
         boolean result = instance.isFile(startsWithString);
         assertEquals(expResult, result);
 
+    }
+
+    private void given() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
