@@ -2,6 +2,7 @@ package com.instructure.csv.jsf.util;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -50,6 +51,18 @@ public class JsfUtil {
     public static void addSuccessMessage(String msg) {
         FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+    }
+    /**
+     * Build the message for Facets to display ..
+     *
+     * @param severity
+     * @param summary
+     * @param detail
+     */
+    public static void addMessage(Severity severity, String summary, String detail) {
+        FacesMessage facesMsg = new FacesMessage(severity, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(severity.toString(), facesMsg);
+
     }
 
     public static String getRequestParameter(String key) {
