@@ -80,13 +80,13 @@ public class FileUploadBean implements Serializable {
 
             } else {
                 try {
-                JsfUtil.addMessage(FacesMessage.SEVERITY_ERROR, "Format Error", "File '" + file.getFileName() + "' is not student or course format");
-                } catch (NullPointerException npe){
+                    JsfUtil.addMessage(FacesMessage.SEVERITY_ERROR, "Format Error", "File '" + file.getFileName() + "' is not student or course format");
+                } catch (NullPointerException npe) {
                     // This only happens when running tests
                     // TODO: Need to figure out how to mock the above properly
                     //       so that we don't need this unnecessary try/catch
                 }
-                throw new IOException("File is not student or course format");
+                //throw new IOException("File is not student or course format");
             }
         }
     }

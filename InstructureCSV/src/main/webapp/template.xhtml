@@ -15,7 +15,7 @@
 
     <h:body>
 
-        <p:growl id="messages" sticky="true" showDetail="true" autoUpdate="true"/>
+        <p:growl id="growl" sticky="true" showDetail="true" autoUpdate="true"/>
 
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
@@ -42,7 +42,9 @@
                                       mode="advanced"
                                       fileUploadListener="#{fileUploadBean.fileUploadListener}"
                                       multiple="true"
-                                      ></p:fileUpload>
+                                      auto="true"
+                                      update=":growl"
+                                      />
                     </h:form>
                 </div>
             </p:layoutUnit>

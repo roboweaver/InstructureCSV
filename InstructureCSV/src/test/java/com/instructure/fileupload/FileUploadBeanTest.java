@@ -99,9 +99,9 @@ public class FileUploadBeanTest {
      * Test of fileUploadListener method, of class FileUploadBean.
      *
      * @throws java.io.IOException
-     */
-    @Test(expected = IOException.class)
-    public void testFileUploadListener() throws IOException, Exception {
+     */ 
+    @Test
+    public void testFileUploadListener() throws IOException {
         System.out.println("fileUploadListener");
 
         FileUploadEvent e = Mockito.mock(FileUploadEvent.class);
