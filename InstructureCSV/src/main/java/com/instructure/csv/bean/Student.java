@@ -31,13 +31,13 @@ import org.csveed.annotations.CsvFile;
     @NamedQuery(name = "Student.findByCourseId", query = "Select s FROM Student s WHERE s.studentCourseId = :studentCourseId")})
 public class Student implements Serializable {
 
-    @CsvCell(columnIndex = 1, required = true)
+    @CsvCell(columnName = "student_id", required = true)
     @Id
     @GeneratedValue
     @Column(name = "student_id", nullable = false)
     private Integer studentId;
     
-    @CsvCell(columnIndex = 2)
+    @CsvCell(columnName = "student_name")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -45,13 +45,13 @@ public class Student implements Serializable {
     private String studentName;
     
     
-    @CsvCell(columnIndex = 3)
+    @CsvCell(columnName = "course_id")
     @Basic(optional = false)
     @Column(name = "student_course_id", nullable = false)  
     // TODO: add join relationship here and replace the member with Course object
     private Integer studentCourseId;
     
-    @CsvCell(columnIndex = 4)
+    @CsvCell(columnName = "state")
     @Basic(optional = false)
     @NotNull
     @Column(name = "student_active", nullable = false)

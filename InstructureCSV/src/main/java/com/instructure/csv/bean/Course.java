@@ -30,20 +30,20 @@ import org.csveed.annotations.CsvFile;
     @NamedQuery(name = "Course.findByCourseName", query = "SELECT c FROM Course c WHERE c.courseName = :courseName")})
 public class Course implements Serializable {
 
-    @CsvCell(columnIndex = 1, required = true)
+    @CsvCell(columnName = "course_id", required = true)
     @Id
     @GeneratedValue
     @Column(name = "course_id", nullable = false)
     private Integer courseId;
     
-    @CsvCell(columnIndex = 2)
+    @CsvCell(columnName = "course_name")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "course_name", nullable = false, length = 255)
     private String courseName;
     
-    @CsvCell(columnIndex = 3)
+    @CsvCell(columnName = "state")
     @Basic(optional = false)
     @NotNull
     @Column(name = "course_active", nullable = false)
@@ -104,7 +104,7 @@ public class Course implements Serializable {
         sb.append(this.courseId);
         sb.append(", user_name: '");
         sb.append(this.courseName);
-        sb.append("), active: '");
+        sb.append("', active: '");
         sb.append(this.getCourseActive());
         sb.append("'");
         return sb.toString();
