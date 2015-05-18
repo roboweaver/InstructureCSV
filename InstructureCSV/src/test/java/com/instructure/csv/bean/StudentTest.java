@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  *
  * @author robweaver
  */
-public class StudentIT {
+public class StudentTest {
 
     private final String studentHeader = "user_id, user_name, course_id, state";
     private final String studentBody = "1, Test student, 1, active";
@@ -32,7 +32,7 @@ public class StudentIT {
     private final String studentContentExtraHeaders = studentHeaderExtraColumns + "\n" + studentBody;
     private final String studentContentExtraColumns = studentHeaderExtraColumns + "\n" + studentBody + ", 1, 2, 3, 4";
 
-    public StudentIT() {
+    public StudentTest() {
     }
 
     @BeforeClass

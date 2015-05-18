@@ -117,6 +117,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- 
+                The maven-failsafe-plugin is used to run integration tests.
+                The tests are part of /src/main/test and should end with 
+                *IT.java
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.12.4</version>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <skiptests>${skip.integration.tests}</skiptests>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <repositories>
