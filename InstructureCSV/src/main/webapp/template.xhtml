@@ -17,8 +17,8 @@
 
         <p:growl id="growl" sticky="true" showDetail="true" autoUpdate="true"/>
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+        <p:layout fullPage="true" class="container-fluid">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}" class="container col-md-12">
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
@@ -28,12 +28,14 @@
                 </h:form>
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="60">
+            <p:layoutUnit position="south" size="60" class="container col-md-12">
                 <ui:insert name="footer"/>
             </p:layoutUnit>
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
+            <p:layoutUnit position="center" class="container col-md-12">
+                <div class="container col-md-12">
+                    <ui:insert name="body"/>
+                </div>
                 <!-- Form area -->
                 <div class="col-sm-9 col-md-9 main">
                     Upload Test
