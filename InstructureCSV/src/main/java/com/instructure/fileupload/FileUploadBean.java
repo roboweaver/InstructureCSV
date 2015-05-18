@@ -113,10 +113,10 @@ public class FileUploadBean implements Serializable {
     /**
      * Check if the file starts with a particular string or not
      *
-     * @param startsWithString
+     * @param fieldNameString
      * @return
      */
-    public boolean isFile(String startsWithString) {
+    public boolean isFile(String fieldNameString) {
         boolean returnValue = false;
         if (file != null) {
             InputStream inputStream;
@@ -127,7 +127,7 @@ public class FileUploadBean implements Serializable {
                 String header = fileReader.readLine();
                 if (header != null) {
                     // See if the first row starts with the string we're looking for
-                    if (header.startsWith(startsWithString)) {
+                    if (header.contains(fieldNameString)) {
                         returnValue = true;
                     }
                 }
