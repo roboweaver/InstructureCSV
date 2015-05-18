@@ -31,13 +31,13 @@ import org.csveed.annotations.CsvFile;
     @NamedQuery(name = "Student.findByCourseId", query = "Select s FROM Student s WHERE s.studentCourseId = :studentCourseId")})
 public class Student implements Serializable {
 
-    @CsvCell(columnName = "student_id", required = true)
+    @CsvCell(columnName = "user_id", required = true)
     @Id
     @GeneratedValue
     @Column(name = "student_id", nullable = false)
     private Integer studentId;
     
-    @CsvCell(columnName = "student_name")
+    @CsvCell(columnName = "user_name")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -126,9 +126,9 @@ public class Student implements Serializable {
         sb.append(this.studentId);
         sb.append(", user_name: '");
         sb.append(this.studentName);
-        sb.append("', course_id: (");
+        sb.append("', course_id: '");
         sb.append(this.studentCourseId);
-        sb.append("), active: '");
+        sb.append("', active: '");
         sb.append(this.getStudentActive());
         sb.append("'");
         return sb.toString();
